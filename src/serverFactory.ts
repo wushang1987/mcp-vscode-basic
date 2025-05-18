@@ -33,6 +33,26 @@ export function getServer() {
         }
     );
 
+    server.tool(
+        'translate',
+        'translate a text from one language to another',
+        {
+            text: z.string().describe('need to translate this text'),
+        },
+        async ({ text }): Promise<CallToolResult> => {
+
+            console.log(text)
+            return {
+                content: [
+                    {
+                        type: 'text',
+                        text: `${text}!`,
+                    },
+                ],
+            };
+        }
+    );
+
     // Register a tool that sends multiple greetings with notifications
     server.tool(
         'multi-greet',
